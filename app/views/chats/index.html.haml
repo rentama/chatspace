@@ -1,0 +1,43 @@
+%p.layout-notice チャットグループが作成されました。
+.chat
+  .chat__side
+    .chat__side--user
+      %h5 Hello!
+      %a.edit-your-account
+        %i.fa.fa-cog
+      %a.create-a-chat-group
+        %i.fa.fa-pencil-square-o
+    %ul.chat__side--groups
+      %li.chat__side--group
+        %a.chat--group__link
+          %p.chat--group__name name1
+          %p.chat--group__message message1
+      %li.chat__side--group
+        %a.chat--group__link
+          %p.chat--group__name name2
+          %p.chat--group__message message2
+  .chat__main
+    .chat__main--header
+      .chat__main--header__left
+        %h2 sample
+        %p Members: hoge huga
+      .chat__main--header__right
+        %a Edit
+    .chat__main--body
+      %ul
+        %li
+          .chat__main--body--block
+            .chat__main--body--block--name ren
+            .chat__main--body--block--date 16/10/31 11:45:32
+          %p.chat__main--body--message こんにちは
+        %li
+          .chat__main--body--block
+            .chat__main--body--block--name ken
+            .chat__main--body--block--date 16/11/1 09:11:11
+          %p.chat__main--body--message おはようございます
+    .chat__main--footer
+      .chat__main--footer--block
+        %textarea.chat__main--footer--block__left{placeholder: "type a message"}
+        %label.chat__main--footer--image
+          %i.fa.fa-image
+        .chat__main--footer--block__right Send
