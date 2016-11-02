@@ -16,7 +16,7 @@
   &__side{
     float:left;
     width: 300px;
-    height: calc(100% - 30px);
+    height: 100%;
     background-color: #2f3e51;
     &--user {
       height: 70px;
@@ -82,7 +82,7 @@
     float: left;
     position: relative;
     width: calc(100% - 300px);
-    height: calc(100% - 30px);
+    height: 100%;
     &--header {
       padding-right: 40px;
       padding-left: 40px;
@@ -189,7 +189,7 @@
     &--footer {
       height: 100px;
       background-color: #DDDDDD;
-      &--block{
+      .new_message{
         padding-top:20px;
         padding-left:40px;
         &:after {
@@ -197,17 +197,18 @@
           display: block;
           clear: both;
         }
-        &__left {
+        .chat__main--footer--block__left {
           background-color: white;
-          height: 38px;
-          padding-top: 12px;
-          padding-left: 10px;
+          height: 50px;
           color: #808080;
-          width: calc(100% - 80px - 135px - 40px);
+          width: calc(100% - 80px - 135px - 30px);
           margin-left: 15px;
-          float:left
+          float:left;
+          textarea {
+            width: calc(100%)
+          }
         }
-        label {
+        .chat__main--footer--image {
           background-color: white;
           height: 38px;
           padding-top: 12px;
@@ -218,13 +219,12 @@
           float:left;
           color: #434a54;
         }
-        &__right {
-          height: 38px;
+        .chat__main--footer--block__right {
+          height: 50px;
           width: 100px;
           background-color: #38AEF0;
           text-align: center;
           color: white;
-          padding-top: 12px;
           margin-left: 15px;
           float:left;
         }
