@@ -1,4 +1,4 @@
-%p.layout-notice チャットグループが作成されました。
+
 .chat
   .chat__side
     .chat__side--user
@@ -38,7 +38,7 @@
     .chat__main--footer
       = form_for @message,:url => {:action => :create} do |f|
         .chat__main--footer--block__left
-          = f.text_area :body, placeholder: "type a message"
+          = f.text_area :body, id:"chat__main--footer--text-js", placeholder: "type a message"
         .chat__main--footer--image
           %i.fa.fa-image
         = f.submit class:"chat__main--footer--block__right", value: "Submit"

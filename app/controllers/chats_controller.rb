@@ -4,8 +4,8 @@ class ChatsController < ApplicationController
   end
 
   def create
-    Message.create(create_params)
-    redirect_to :action => "index"
+   @message = Message.create(create_params)
+   redirect_to action: "index"
   end
 
   private
