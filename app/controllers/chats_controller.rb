@@ -4,8 +4,13 @@ class ChatsController < ApplicationController
   end
 
   def create
-   @message = Message.create(create_params)
-   redirect_to action: "index"
+    @message = Message.new(create_params)
+    if @message.save
+      redirect_to action: "index"
+    else
+      flash[:notice] = "メッセージ" + @message.errors.messages[:body][0]
+      redirect_to action: "index"
+    end
   end
 
   private

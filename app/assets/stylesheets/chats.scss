@@ -10,6 +10,16 @@
   font-weight: 200;
   text-align: center;
 }
+
+.error_message {
+  background-color: red;
+  height:30px;
+  line-height: 30px;
+  letter-spacing: 1px;
+  color: #fff;
+  font-weight: 200;
+  text-align: center;
+}
 .chat {
   min-width: 980px;
   height: 773px;
