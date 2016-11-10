@@ -14,7 +14,7 @@ describe ChatsController do
   end
 
   describe "POST #create" do
-    describe "success" do
+    context "success" do
       it "save the new message in the database" do
         expect {
           post :create, message: attributes_for(:message)
@@ -24,10 +24,14 @@ describe ChatsController do
           post :create, message: attributes_for(:message)
           expect(response).to redirect_to chats_path
       end
+      it "don't define flash[:notice]" do
+        post :create, message: attributes_for(:message)
+        expect(flash[:notice]).to be_nil
+      end
     end
 
-    describe "failure" do
-      it "save the new message in the database" do
+    context "failure" do
+      it "can't save the new message in the database" do
         expect {
           post :create, message: attributes_for(:message,body: nil)
         }.to change( Message, :count).by(0)
@@ -35,6 +39,10 @@ describe ChatsController do
       it "redirect to chats#index" do
         post :create, message: attributes_for(:message, body: nil)
         expect(response).to redirect_to chats_path
+      end
+      it "define flash[:notice]" do
+        post :create, message: attributes_for(:message, body: nil)
+        expect(flash[:notice]).not_to be_nil
       end
     end
   end
