@@ -8,7 +8,7 @@ class ChatsController < ApplicationController
     if @message.save
       redirect_to action: "index"
     else
-      flash[:notice] = "メッセージ" + @message.errors.messages[:body][0]
+      flash[:notice] = "メッセージを入力してください"
       redirect_to action: "index"
     end
   end
