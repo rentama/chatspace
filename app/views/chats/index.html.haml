@@ -1,15 +1,16 @@
-.layout-notice グループを作成しました
+- if flash[:notice].present?
+  .layout-notice
+    =flash[:notice]
 
-- if flash.present?
+- if flash[:alert].present?
   .error_message
-    - flash.each do |key, value|
-      = content_tag(:div, value, class: "#{key}")
+    =flash[:alert]
 
 .chat
   .chat__side
     .chat__side--user
       %h5 Hello!
-      %a{ href:"/users/edit", class:"edit-user-registration"}
+      = link_to edit_user_registration_path, class: "edit-user-registration" do
         %i.fa.fa-cog
       %a.create-a-chat-group
         %i.fa.fa-pencil-square-o
