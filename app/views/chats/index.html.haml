@@ -12,7 +12,7 @@
       %h5 Hello!
       = link_to edit_user_registration_path, class: "edit-user-registration" do
         %i.fa.fa-cog
-      = link_to new_group_path, class: "create-a-chat-group" do
+      = link_to new_group_path, class: "create-a-chat-group" do 
         %i.fa.fa-pencil-square-o
     %ul.chat__side--groups
       %li.chat__side--group
@@ -23,8 +23,6 @@
         %a.chat--group__link
           %p.chat--group__name name2
           %p.chat--group__message message2
-
-
   .chat__main
     .chat__main--header
       .chat__main--header__left
