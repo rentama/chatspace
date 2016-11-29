@@ -5,7 +5,8 @@
       .chat-group-form__errors
         %h2 1 error prohibited this chat_group from being saved:
         %ul
-          %li= flash[:alert]
+          - flash[:alert].each do |alert|
+            %li= alert
     .chat-group-form__field.clearfix
       .chat-group-form__field--left
         = f.label :name, "グループ名", class: 'chat-group-form__label', for: 'chat_group_name'

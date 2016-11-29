@@ -9,7 +9,7 @@ class GroupsController < ApplicationController
       flash[:notice] = "チャットグループが作成されました"
       redirect_to controller: "chats", action: "index"
     else
-      flash[:alert] = "Nameを入力してください"
+      flash[:alert] = @group.errors.full_messages
       redirect_to action: "new"
     end
   end
