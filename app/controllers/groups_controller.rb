@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.create(create_params)
+    @group = Group.new(create_params)
     if @group.save
       flash[:notice] = "チャットグループが作成されました"
       redirect_to controller: "chats", action: "index"
@@ -14,8 +14,23 @@ class GroupsController < ApplicationController
     end
   end
 
+  def edit
+    @group =Group.find(params[:id])
+  end
+
+  def update
+    @group = Group.find(params[:id])
+    if @group.update(create_params)
+      flash[:notice] = "チャットグループが更新されました"
+      redirect_to controller: "chats", action: "index"
+    else
+      flash[:alert] = @group.errors.full_messages
+      redirect_to action: "edit"
+    end
+  end
+
   private
   def create_params
-    params.require(:chat_group).permit(:name, {:user_ids => []})
+    params.require(:chat_group).permit(:name, {user_ids: []})
   end
 end
