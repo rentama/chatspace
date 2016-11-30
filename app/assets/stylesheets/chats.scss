@@ -77,12 +77,16 @@
           display:block;
           padding:20px;
           color:#fff;
+          &:hover {
+            background-color:#777;
+          }
           .chat--group__name {
             font-size: 15px;
             margin-bottom: 5px;
           }
           .chat--group__message {
             font-size: 11px;
+            color:white;
           }
         }
       }
