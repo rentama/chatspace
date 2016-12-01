@@ -3,7 +3,7 @@
   = form_for @group do |f|
     - if flash[:alert]
       .chat-group-form__errors
-        %h2 1 error prohibited this chat_group from being saved:
+        %h2= flash[:alert_length]
         %ul
           - flash[:alert].each do |alert|
             %li= alert
