@@ -10,6 +10,7 @@ class GroupsController < ApplicationController
       redirect_to controller: "chats", action: "index"
     else
       flash[:alert] = @group.errors.full_messages
+      flash[:alert_length] = "#{flash[:alert].length} error prohibited this chat_group from being saved:"
       redirect_to action: "new"
     end
   end
@@ -26,6 +27,7 @@ class GroupsController < ApplicationController
       redirect_to controller: "chats", action: "index"
     else
       flash[:alert] = @group.errors.full_messages
+      flash[:alert_length] = "#{flash[:alert].length} error prohibited this chat_group from being saved:"
       redirect_to action: "edit"
     end
   end
