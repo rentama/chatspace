@@ -7,11 +7,11 @@ class GroupsController < ApplicationController
     @group = Group.new(create_params)
     if @group.save
       flash[:notice] = "チャットグループが作成されました"
-      redirect_to controller: "chats", action: "index"
+      redirect_to root_path
     else
       flash[:alert] = @group.errors.full_messages
       flash[:alert_length] = "#{flash[:alert].length} error prohibited this chat_group from being saved:"
-      redirect_to action: "new"
+      redirect_to new_group_path
     end
   end
 
@@ -24,11 +24,11 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
     if @group.update(create_params)
       flash[:notice] = "チャットグループが更新されました"
-      redirect_to controller: "chats", action: "index"
+      redirect_to root_path
     else
       flash[:alert] = @group.errors.full_messages
       flash[:alert_length] = "#{flash[:alert].length} error prohibited this chat_group from being saved:"
-      redirect_to action: "edit"
+      redirect_to edit_group_path
     end
   end
 
