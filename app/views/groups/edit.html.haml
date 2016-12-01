@@ -11,7 +11,7 @@
       .chat-group-form__field--left
         = f.label :name, "グループ名", class: 'chat-group-form__label', for: 'chat_group_name'
       .chat-group-form__field--right
-        = f.text_field :name, class: 'chat-group-form__input', id: 'chat_group_name', placeholder: "グループ名を入力してください", :name => "chat_group[name]",value: @group.name 
+        = f.text_field :name, class: 'chat-group-form__input', id: 'chat_group_name', placeholder: "グループ名を入力してください", :name => "chat_group[name]",value: @group.name
     .chat-group-form__field.clearfix
       .chat-group-form__field--left
         = f.label :users, "チャットメンバーを追加", class: 'chat-group-form__label'
@@ -22,10 +22,11 @@
     .chat-group-form__field.clearfix
       .chat-group-form__field--left
         .chat-group-form__label チャットメンバー
-      .chat-group-form__field--right
-        #chat-group-users
-          #chat-group-user-22.chat-group-user.clearfix
-            = current_user.name
+      - @users.each do |user|
+        .chat-group-form__field--right
+          #chat-group-users
+            .chat-group-user.clearfix
+              = user.name
 
     .chat-group-form__field.clearfix
       .chat-group-form__field--left
