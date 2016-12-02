@@ -36,6 +36,11 @@ class GroupsController < ApplicationController
     @groups = Group.all
     @group = Group.find(params[:id])
     @message = Message.new
+    @users = ""
+    @group.users.each do |user|
+      @users += user.name + " "
+    end
+    @members = "Members: #{@users}"
   end
 
   private
