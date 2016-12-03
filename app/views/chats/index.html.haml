@@ -20,4 +20,4 @@
           = link_to group_path(group), class: "chat--group__link" do
             %p.chat--group__name= group.name
             -if group.messages.present?
-              %p.chat--group__message= group.messages[0].body
+              %p.chat--group__message= group.messages.first.body
