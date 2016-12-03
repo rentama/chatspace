@@ -1,0 +1,48 @@
+- if flash[:notice].present?
+  .layout-notice
+    =flash[:notice]
+
+- if flash[:alert].present?
+  .error_message
+    =flash[:alert]
+
+.chat
+  .chat__side
+    .chat__side--user
+      %h5= current_user.name
+      = link_to edit_user_registration_path, class: "edit-user-registration" do
+        %i.fa.fa-cog
+      = link_to new_group_path, class: "create-a-chat-group" do
+        %i.fa.fa-pencil-square-o
+    %ul.chat__side--groups
+      - @groups.each do |group|
+        %li.chat__side--group
+          = link_to group_path(group), class: "chat--group__link" do
+            %p.chat--group__name= group.name
+            -if group.messages.present?
+              %p.chat--group__message= group.messages[0].body
+
+  .chat__main
+    .chat__main--header
+      .chat__main--header__left
+        %h2= @group.name
+        %p= @group.member_names
+      .chat__main--header__right
+        = link_to "Edit", edit_group_path(@group)
+    .chat__main--body
+      %ul
+        -@group.messages.each do |message|
+          %li
+            .chat__main--body--block
+              .chat__main--body--block--name= message.user.name
+              .chat__main--body--block--date= message.created_at
+            %p.chat__main--body--message= message.body
+
+    .chat__main--footer
+      = form_for @message, url: chats_path, method: :post do |f|
+        = f.hidden_field :group_id, value: @group.id
+        .chat__main--footer--block__left
+          = f.text_area :body, id:"chat__main--footer--text-js", placeholder: "type a message"
+        .chat__main--footer--image
+          %i.fa.fa-image
+        = f.submit class:"chat__main--footer--block__right", value: "Submit"
