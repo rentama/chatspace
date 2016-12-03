@@ -6,12 +6,12 @@ class ChatsController < ApplicationController
 
   def create
     @message = Message.new(create_params)
-    @group_id = params.require(:message).permit(:group_id)[:group_id]
+    @group = @message.group
     if @message.save
-      redirect_to group_path(@group_id)
+      redirect_to group_path(@group)
     else
       flash[:alert] = "メッセージを入力してください"
-      redirect_to group_path(@group_id)
+      redirect_to group_path(@group)
     end
   end
 
