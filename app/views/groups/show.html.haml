@@ -26,7 +26,7 @@
     .chat__main--header
       .chat__main--header__left
         %h2= @group.name
-        %p= @group.members
+        %p= @group.member_names
       .chat__main--header__right
         = link_to "Edit", edit_group_path(@group)
     .chat__main--body
