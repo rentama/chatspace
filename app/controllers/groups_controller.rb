@@ -33,9 +33,14 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @groups = Group.all
     @group = Group.find(params[:id])
-    @message = Message.new
+    if @group.users.include?(current_user)
+      @groups = current_user.groups.all
+      @message = Message.new
+    else
+      redirect_to root_path
+      flash[:alert] = "このグループに所属していません"
+    end
   end
 
   private
