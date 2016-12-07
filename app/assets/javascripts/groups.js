@@ -1,4 +1,8 @@
 $(function() {
+  function buildHTML(message) {
+    var html = $(`<li><div class="chat__main--body--block"><div class="chat__main--body--block--name">${message.user_name}</div><div class="chat__main--body--block--date">${message.created_at}</div></div><p class="chat__main--body--message">${message.body}</p></li>`);
+    return html;
+  }
   $('#new_message').on('submit', function(e) {
     e.preventDefault();
     var textField = $('#chat__main--footer--text-js');
@@ -17,7 +21,8 @@ $(function() {
       dataType: 'json'
     })
      .done(function(data) {
-       $('.chat__main--body--list').append(`<li><div class="chat__main--body--block"><div class="chat__main--body--block--name">${data.user_name}</div><div class="chat__main--body--block--date">${data.created_at}</div></div><p class="chat__main--body--message">${data.body}</p></li>`);
+       var html = buildHTML(data);
+       $('.chat__main--body--list').append(html);
        textField.val('');
      })
      .fail(function() {
