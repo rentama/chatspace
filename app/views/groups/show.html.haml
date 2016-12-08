@@ -30,7 +30,7 @@
       .chat__main--header__right
         = link_to "Edit", edit_group_path(@group)
     .chat__main--body
-      %ul
+      %ul.chat__main--body--list
         -@group.messages.each do |message|
           %li
             .chat__main--body--block

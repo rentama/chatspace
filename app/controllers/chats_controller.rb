@@ -8,7 +8,10 @@ class ChatsController < ApplicationController
     @message = Message.new(create_params)
     @group = @message.group
     if @message.save
-      redirect_to group_path(@group)
+      respond_to do |format|
+        format.html { redirect_to group_path(@group) }
+        format.json { render json: { body: @message.body, user_name: @message.user.name, created_at: @message.created_at}}
+      end
     else
       flash[:alert] = "メッセージを入力してください"
       redirect_to group_path(@group)
