@@ -5,6 +5,8 @@ class Group < ApplicationRecord
 
   validates :name, presence: true
 
+  attr_accessor :user
+
   def member_names
     users_names = users.map(&:name)
     return "Members: #{users_names.join(" ")}"
