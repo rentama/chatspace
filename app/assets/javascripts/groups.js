@@ -1,4 +1,16 @@
 $(function() {
+  $(document).on('click', '.user-search-add', function(){
+    var user_id = $(this).data('user-id');
+    var user_name = $(this).data('user-name');
+    var html = build_decided_user(user_id, user_name);
+    $('#chat-group-user').append(html);
+  });
+
+  $(document).on('click', '.user-search-remove', function() {
+    var user_id = $(this).data('user-id');
+    $(`#${user_id}`).remove()
+  });
+
   $('#new_message').on('submit', function(e) {
     e.preventDefault();
     var textField = $('#chat__main--footer--text-js');
@@ -38,22 +50,12 @@ $(function() {
       dataType: 'json'
     })
     .done(function(data) {
-      // var user_names = data.user_names;
+
       var users = data.users
       $("div").remove("#user-search-result");
       $.each( users, function() {
         var html = build_user_HTML(this);
         $('#chat-user-result').append(html);
-      });
-      $('.user-search-add').on("click", function() {
-        var user_id = $(this).data('user-id');
-        var user_name = $(this).data('user-name');
-        var html = build_decided_user(user_id, user_name);
-        $('#chat-group-user').append(html);
-        $('.user-search-remove').on("click", function() {
-          var user_id = $(this).data('user-id');
-          $(`#${user_id}`).remove()
-        });
       });
     })
     .fail(function(){
