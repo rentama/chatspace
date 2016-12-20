@@ -43,6 +43,16 @@ class GroupsController < ApplicationController
     end
   end
 
+  def search
+    if params.present?
+      @users = User.where("name LIKE?", "%#{params.require(:user)[:name]}%")
+    end
+    respond_to do |format|
+      format.html { redirect_to root_path}
+      format.json { render json: { users: @users}}
+    end
+  end
+
   private
   def create_params
     params.require(:chat_group).permit(:name, {user_ids: []})
