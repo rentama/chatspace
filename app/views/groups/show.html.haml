@@ -31,7 +31,7 @@
         = link_to "Edit", edit_group_path(@group)
     .chat__main--body
       %ul.chat__main--body--list
-        -@group.messages.each do |message|
+        -@messages.each do |message|
           %li
             .chat__main--body--block
               .chat__main--body--block--name= message.user.name

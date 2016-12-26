@@ -36,7 +36,12 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
     if @group.users.include?(current_user)
       @groups = current_user.groups.all
+      @messages = @group.messages
       @message = Message.new
+      respond_to do |format|
+        format.html
+        format.json { render json: { messages: @messages, users: @messages.map{|message| message.user}, current_user: current_user}}
+      end
     else
       redirect_to root_path
       flash[:alert] = "このグループに所属していません"
