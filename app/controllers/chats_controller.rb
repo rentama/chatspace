@@ -10,7 +10,7 @@ class ChatsController < ApplicationController
     if @message.save
       respond_to do |format|
         format.html { redirect_to group_path(@group) }
-        format.json { render json: { body: @message.body, user_name: @message.user.name, created_at: @message.created_at}}
+        format.json { render json: { body: @message.body, user_name: @message.user.name, created_at: @message.created_at, image: @message.image_url}}
       end
     else
       flash[:alert] = "メッセージを入力してください"
@@ -20,6 +20,6 @@ class ChatsController < ApplicationController
 
   private
   def create_params
-      params.require(:message).permit(:body, :group_id).merge(user_id: current_user.id)
+      params.require(:message).permit(:body, :group_id, :image).merge(user_id: current_user.id)
   end
 end
