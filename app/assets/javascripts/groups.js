@@ -60,10 +60,36 @@ $(function() {
       alert("error")
     })
   });
+
+  $.PeriodicalUpdater(`./json`,{
+    //  オプション設定
+    method: 'get',      // 送信リクエストURL
+    minTimeout: 100,  // 送信インターバル(ミリ秒)
+    url : window.location,
+    type: 'json',       // xml、json、scriptもしくはhtml (jquery.getやjquery.postのdataType)
+    multiplier:1,       // リクエスト間隔の変更
+    maxCalls: 0         //　リクエスト回数（0：制限なし）
+  }, function (data){
+    // dataは上記URLから引き渡され、変更があったか自動で判別される。
+    // dataに変更があった場合のみ実行
+    var messages = data.messages;
+    var new_message = messages[messages.length - 1];
+    var users = data.users;
+    var new_user = users[users.length - 1];
+    if(data.current_user.id != new_user.id){
+      html = build_auto_HTML(new_message, new_user);
+      $('.chat__main--body--list').append(html);
+    };
+  });
 });
 
 function buildHTML(message) {
   var html = $(`<li><div class="chat__main--body--block"><div class="chat__main--body--block--name">${message.user_name}</div><div class="chat__main--body--block--date">${message.created_at}</div></div><p class="chat__main--body--message">${message.body}</p><img src="${message.image}"></li>`);
+  return html;
+};
+
+function build_auto_HTML(message,user) {
+  var html = $(`<li><div class="chat__main--body--block"><div class="chat__main--body--block--name">${user.name}</div><div class="chat__main--body--block--date">${message.created_at}</div></div><p class="chat__main--body--message">${message.body}</p><img src="${message.image}"></li>`);
   return html;
 };
 
